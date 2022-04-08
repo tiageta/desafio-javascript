@@ -93,11 +93,27 @@ function UpdateCompareTable() {
     "preco",
   ];
 
-  /* Adds object info in corresponding table row/cell */
+  /* Starts logic for adding object info in corresponding table row/cell */
   const rows = document.querySelector("table").rows;
-  for (let i = 0; i < rows.length; i++) {
-    rows[i].cells[1].textContent = carArr[0][tableOrder[i]]; // middle column [1] receives first car info [0]
-    rows[i].cells[2].textContent = carArr[1][tableOrder[i]]; // last column [2] receives second car info [1]
+
+  /* Fills first row with car images */
+  carArr.forEach((car, carIndex) => {
+    /* Stores image cell of first row (rows[0]) */
+    const imgCell = rows[0].cells[carIndex + 1]; // +1 to skip empty cell[0]
+    /* Creates img element */
+    const img = document.createElement("img");
+    img.src = car.image;
+    img.style = "width: 100%"; // fits image in table cell
+    /* Replace previous image, if there's any */
+    imgCell.replaceChildren(img);
+  });
+
+  /* Fills table content after image (i = 1) */
+  for (let i = 1; i < rows.length; i++) {
+    /* Middle column [1] receives first car info [0] */
+    rows[i].cells[1].textContent = carArr[0][tableOrder[i]];
+    /* Last column [2] receives second car info [1] */
+    rows[i].cells[2].textContent = carArr[1][tableOrder[i]];
   }
   /*************** END OF ADDED CODE 3 ***************/
 }
