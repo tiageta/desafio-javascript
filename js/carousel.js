@@ -6,10 +6,15 @@ let carouselArr = [];
 /****************** ADDED CODE 1 ******************/
 /* DOM related variables */
 let carouselImg, carouselLink;
-/*************** END OF ADDED CODE 1 ***************/
 
 //class Carousel
 class Carousel {
+  /* Initializes static properties */
+  static _sequence = 0;
+  static _size = 0;
+  static _interval = 0;
+  /*************** END OF ADDED CODE 1 ***************/
+
   constructor(image, title, url) {
     this.image = image;
     this.title = title;
@@ -26,7 +31,7 @@ class Carousel {
         /* Adds responsive sizing */
         carouselImg.setAttribute(
           "style",
-          "height:100%; max-width:100%; object-fit:contain"
+          "height:100% ; max-width:90%; object-fit:contain"
         );
         document.getElementById("carousel").appendChild(carouselImg);
         /* Centers img in containing div */
@@ -52,7 +57,7 @@ class Carousel {
   }
 
   static Next() {
-    /****************** ADDED CODE 1 ******************/
+    /****************** ADDED CODE 3 ******************/
     /* Updates Carousel image */
     carouselImg.src = "img/" + carouselArr[Carousel._sequence].image;
     /* Updates Carousel title */
