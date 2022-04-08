@@ -18,9 +18,12 @@ class Car {
     /****************** ADDED CODE 1 ******************/
     /* Populates class variables */
     this.nome = nome;
-    this.preco = preco;
+    this.preco = preco.toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    });
     this.alturaCacamba = alturaCacamba;
-    this.atluraVeiculo = alturaVeiculo;
+    this.alturaVeiculo = alturaVeiculo;
     this.alturaSolo = alturaSolo;
     this.capacidadeCarga = capacidadeCarga;
     this.motor = motor;
