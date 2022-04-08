@@ -43,6 +43,15 @@
                 <input type="text" name="cpf" placeholder="CPF*" class="fordform" required>
                 <input type="text" name="sobrenome" placeholder="SOBRENOME*" class="fordform" required>
                 <input type="text" name="telefone" placeholder="TELEFONE*" class="fordform" required>
+                <!----------------- ADDED INPUT METHODS ----------------->
+                <select name="tipo-contato" class="fordform" required>
+                    <option selected>O QUE DESEJA ENVIAR</option>
+                    <option>ELOGIO</option>
+                    <option>RECLAMAÇÃO</option>
+                    <option>SUGESTÃO</option>
+                </select>
+                <textarea name="mensagem" placeholder="Mensagem..." class="fordform" required></textarea>
+                <!------------- END OF ADDED INPUT METHODS -------------->
                 <select name="contato" class="fordform" required>
                     <option selected>COMO DESEJA SER CONTATADO</option>
                     <option>TELEFONE</option>
@@ -52,6 +61,30 @@
             </form>
             </div>
         </div>
+        <!----------------- ADDED INPUT HOVER EFFECTS ----------------->
+        <script>
+            /* Hover effects for form boxes */
+            const formBoxes = document.querySelectorAll(".fordform");
+            formBoxes.forEach( formBox => {
+                formBox.addEventListener("mouseenter", () => {
+                    formBox.style.border = "1px solid black";
+                })
+
+                formBox.addEventListener("mouseleave", () => {
+                    formBox.style.border = "1px solid #cccccc";
+                });
+            });
+            
+            /* Hover effects for send button */
+            const sendButton = document.querySelector("button[type=submit]");
+            sendButton.addEventListener("mouseenter", () => {
+                sendButton.setAttribute("style", "font-size: 16px; width: 210px; height: 45px; letter-spacing: .5px; font-weight: 700;");                
+            })
+            sendButton.addEventListener("mouseleave", () => {
+                sendButton.setAttribute("style", "background: #1351d8; font-size: 13px; width: 200px; height: 40px;");
+            });
+        </script>
+        <!------------- END OF ADDED INPUT HOVER EFFECTS -------------->
     </main>
     <footer>
         <nav id="social">
