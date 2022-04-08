@@ -76,4 +76,28 @@ function HideCompare() {
   document.getElementById("compare").style.display = "none";
 }
 
-function UpdateCompareTable() {}
+function UpdateCompareTable() {
+  /****************** ADDED CODE 3 ******************/
+  /* Order in which info is shown in table */
+  const tableOrder = [
+    "image",
+    "nome",
+    "alturaCacamba",
+    "alturaVeiculo",
+    "alturaSolo",
+    "capacidadeCarga",
+    "motor",
+    "potencia",
+    "volumeCacamba",
+    "roda",
+    "preco",
+  ];
+
+  /* Adds object info in corresponding table row/cell */
+  const rows = document.querySelector("table").rows;
+  for (let i = 0; i < rows.length; i++) {
+    rows[i].cells[1].textContent = carArr[0][tableOrder[i]]; // middle column [1] receives first car info [0]
+    rows[i].cells[2].textContent = carArr[1][tableOrder[i]]; // last column [2] receives second car info [1]
+  }
+  /*************** END OF ADDED CODE 3 ***************/
+}
