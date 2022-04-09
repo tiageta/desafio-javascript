@@ -27,7 +27,7 @@ function Post(form) {
   /* Converts stored date object into JSON, used in Post requests */
   const dataToSend = JSON.stringify(data);
   /* Prints JSON in console, simulating a Post request */
-  console.log(dataToSend);
+  console.log("Enviando dados em formato JSON ao servidor: \n" + dataToSend);
 
   /* Adds neccessary id used in Enviar() */
   form.elements.namedItem("nome")?.setAttribute("id", "nomeid");
