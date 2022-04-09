@@ -63,26 +63,30 @@
         </div>
         <!----------------- ADDED INPUT HOVER EFFECTS ----------------->
         <script>
-            /* Hover effects for form boxes */
+            /* Hover and focus effects for form boxes */
             const formBoxes = document.querySelectorAll(".fordform");
             formBoxes.forEach( formBox => {
-                formBox.addEventListener("mouseenter", () => {
-                    formBox.style.border = "1px solid black";
-                })
-
-                formBox.addEventListener("mouseleave", () => {
-                    formBox.style.border = "1px solid #cccccc";
-                });
+                /* Focus effect */
+                formBox.onfocus = () => formBox.style.outline = "1px solid blue";
+                formBox.onblur = () => formBox.style.outline = "1px solid #cccccc";
+                
+                /* Hover effect */
+                formBox.onmouseenter = () => {
+                    if(formBox !== document.activeElement) // ignores focused element
+                        formBox.style.outline = "1px solid black";
+                }
+                formBox.onmouseleave = () => {
+                    if(formBox !== document.activeElement) // ignores focused element
+                        formBox.style.outline = "1px solid #cccccc";
+                }
             });
             
             /* Hover effects for send button */
             const sendButton = document.querySelector("button[type=submit]");
-            sendButton.addEventListener("mouseenter", () => {
+            sendButton.onmouseenter = () =>
                 sendButton.setAttribute("style", "font-size: 16px; width: 210px; height: 45px; letter-spacing: .5px; font-weight: 700;");                
-            })
-            sendButton.addEventListener("mouseleave", () => {
-                sendButton.setAttribute("style", "background: #1351d8; font-size: 13px; width: 200px; height: 40px;");
-            });
+            sendButton.onmouseleave = () =>
+                sendButton.setAttribute("style", "background: #1351d8; font-size: 13px; width: 200px; height: 40px;");;
         </script>
         <!------------- END OF ADDED INPUT HOVER EFFECTS -------------->
     </main>
