@@ -5,7 +5,11 @@ let carouselArr = [];
 
 /****************** ADDED CODE 1 ******************/
 /* DOM related variables */
-let carouselImg, carouselLink;
+let main, carousel, carouselTitle;
+
+const img = document.createElement("img");
+const textNode = document.createTextNode("");
+const linkAnchor = document.createElement("a");
 
 //class Carousel
 class Carousel {
@@ -25,23 +29,34 @@ class Carousel {
     if (arr) {
       if (arr.length > 0) {
         /****************** ADDED CODE 2 ******************/
-        /* Creates img element in DOM for Carousel*/
-        carouselImg = document.createElement("img");
-        carouselImg.alt = "carousel cards";
-        /* Adds responsive sizing */
-        carouselImg.setAttribute(
+        /* Gets neccessary DOM Elements*/
+        main = document.getElementsByTagName("main")[0];
+        carousel = document.getElementById("carousel");
+        carouselTitle = document.getElementById("carousel-title");
+
+        /* Adds an anchor element that will hold both img and title forwarding url */
+        main
+          .insertBefore(linkAnchor, main.firstChild)
+          .append(carousel, carouselTitle);
+
+        /* Appends empty elements to existing divs */
+        carousel.appendChild(img);
+        carouselTitle.appendChild(textNode);
+
+        /* Adds img alt */
+        img.alt = "carousel cards";
+
+        /* Adds responsive img sizing */
+        img.setAttribute(
           "style",
           "height:100% ; max-width:90%; object-fit:contain"
         );
-        document.getElementById("carousel").appendChild(carouselImg);
-        /* Centers img in containing div */
-        document.getElementById("carousel").style.textAlign = "center";
 
-        /* Creates empty title with anchor in DOM for Carousel */
-        carouselLink = document.createElement("a");
-        carouselLink.appendChild(document.createTextNode(""));
-        document.getElementById("carousel-title").appendChild(carouselLink);
+        /* Centers img in containing div */
+        carousel.style.textAlign = "center";
+
         /*************** END OF ADDED CODE 2 ***************/
+
         Carousel._sequence = 0;
         Carousel._size = arr.length;
         Carousel.Next(); //start
@@ -59,10 +74,11 @@ class Carousel {
   static Next() {
     /****************** ADDED CODE 3 ******************/
     /* Updates Carousel image */
-    carouselImg.src = "img/" + carouselArr[Carousel._sequence].image;
+    img.src = "img/" + carouselArr[Carousel._sequence].image;
+    /* Updates anchor url */
+    linkAnchor.href = carouselArr[Carousel._sequence].url;
     /* Updates Carousel title */
-    carouselLink.textContent = carouselArr[Carousel._sequence].title;
-    carouselLink.href = carouselArr[Carousel._sequence].url;
+    textNode.textContent = carouselArr[Carousel._sequence].title;
     /* Controls current Carousel sequence */
     if (++Carousel._sequence >= Carousel._size) {
       Carousel._sequence = 0;
