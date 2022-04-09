@@ -52,3 +52,10 @@ button {
 .titulo {
     margin-left: 8px;
 }
+
+textarea {
+    min-height: 5em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    resize: vertical;
+}
