@@ -26,49 +26,47 @@ class Carousel {
   }
 
   static Start(arr) {
-    if (arr) {
-      if (arr.length > 0) {
-        /****************** ADDED CODE 2 ******************/
-        /* Gets neccessary DOM Elements*/
-        main = document.getElementsByTagName("main")[0];
-        carousel = document.getElementById("carousel");
-        carouselTitle = document.getElementById("carousel-title");
+    /***************** ALTERED CODE 1 *****************/
+    /* Cleaned if-else statement logic */
+    if (!arr) throw "Method Start need a Array Variable.";
+    if (arr.length <= 0) return;
+    /*************** END OF ALTERED CODE 1 **************/
+    /****************** ADDED CODE 2 ******************/
+    /* Gets neccessary DOM Elements*/
+    main = document.getElementsByTagName("main")[0];
+    carousel = document.getElementById("carousel");
+    carouselTitle = document.getElementById("carousel-title");
 
-        /* Adds an anchor element that will hold both img and title forwarding url */
-        main
-          .insertBefore(linkAnchor, main.firstChild)
-          .append(carousel, carouselTitle);
+    /* Adds an anchor element that will hold both img and title forwarding url */
+    main
+      .insertBefore(linkAnchor, main.firstChild)
+      .append(carousel, carouselTitle);
 
-        /* Appends empty elements to existing divs */
-        carousel.appendChild(img);
-        carouselTitle.appendChild(textNode);
+    /* Appends empty elements to existing divs */
+    carousel.appendChild(img);
+    carouselTitle.appendChild(textNode);
 
-        /* Adds img alt */
-        img.alt = "carousel cards";
+    /* Adds img alt */
+    img.alt = "carousel cards";
 
-        /* Adds responsive img sizing */
-        img.setAttribute(
-          "style",
-          "height:100% ; max-width:90%; object-fit:contain"
-        );
+    /* Adds responsive img sizing */
+    img.setAttribute(
+      "style",
+      "height:100% ; max-width:90%; object-fit:contain"
+    );
 
-        /* Centers img in containing div */
-        carousel.style.textAlign = "center";
+    /* Centers img in containing div */
+    carousel.style.textAlign = "center";
+    /*************** END OF ADDED CODE 2 ***************/
 
-        /*************** END OF ADDED CODE 2 ***************/
-
-        Carousel._sequence = 0;
-        Carousel._size = arr.length;
-        Carousel.Next(); //start
-        Carousel._interval = setInterval(function () {
-          Carousel.Next();
-          /***************** ALTERED CODE 1 *****************/
-        }, 2000); // Time interval changed from 5000 to 2000
-        /*************** END OF ALTERED CODE 1 **************/
-      }
-    } else {
-      throw "Method Start need a Array Variable.";
-    }
+    Carousel._sequence = 0;
+    Carousel._size = arr.length;
+    Carousel.Next(); //start
+    Carousel._interval = setInterval(function () {
+      Carousel.Next();
+      /***************** ALTERED CODE 2 *****************/
+    }, 2000); // Time interval changed from 5000 to 2000
+    /*************** END OF ALTERED CODE 2 **************/
   }
 
   static Next() {
@@ -80,9 +78,8 @@ class Carousel {
     /* Updates Carousel title */
     textNode.textContent = carouselArr[Carousel._sequence].title;
     /* Controls current Carousel sequence */
-    if (++Carousel._sequence >= Carousel._size) {
-      Carousel._sequence = 0;
-    }
+    if (++Carousel._sequence >= Carousel._size) Carousel._sequence = 0;
+
     /*************** END OF ADDED CODE 3 ***************/
   }
 }
